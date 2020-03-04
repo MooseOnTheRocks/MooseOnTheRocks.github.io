@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <title>UOSUMRJV - Home</title>
+    </head>
+    
+    <body>
+        <!-- Navigation Menu -->
+        <ul class="nav_menu">
+            <li id="nav_menu_active"><a>Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./join.html">Join</a></li>
+            <li><a href="./media.html">Media</a></li>
+        </ul>
+        
+        <div class="center">
+            <h1>Unofficial OSU Men's Rowing JV</h1>
+        </div>
+        
+        <!-- Slideshow - Images -->
+        <div class="center">
+            <div id="slideshow">
+                <div id="slideshow_slides">
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_kinaan.jpg"></img>
+                        <p>Coxswain - Casey Kinaan</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_matthews.jpg"></img>
+                        <p>Stroke - Tanner Matthews</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_lafond.jpg"></img>
+                        <p>7 Seat - Ben LaFond</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_gavin.jpg"></img>
+                        <p>6 Seat - Tristan Gavin</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_foltz.jpg"></img>
+                        <p>5 Seat - Samuel Foltz</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_rust.jpg"></img>
+                        <p>4 Seat - Hunter Rust</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_hernandez.jpg"></img>
+                        <p>3 Seat - Alexandre Hernandez</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_hankin.jpg"></img>
+                        <p>2 Seat - Josh Hankin</p>
+                    </div>
+                    <div class="slideshow_slide">
+                        <img src="./static/jv_hocker.jpg"></img>
+                        <p>Bow - Josh Hocker</p>
+                    </div>
+                </div>
+                <!-- Slideshow - Buttons -->
+                <div class="container">
+                    <button class="slideshow_button" onclick="slideshow.prev();">&#10094;</button>
+                    <button class="slideshow_button" onclick="slideshow.next();">&#10095;</button>
+                </div>
+            </div>
+            <span class="container" style="font-size: x-small;">Credit: <a href="https://osubeavers.com/sports/mens-rowing/roster">https://osubeavers.com/sports/mens-rowing/roster</a></span>
+        </div>
+        
+        <!-- JS -->
+        <script>
+            let slideshow = mkSlideshow("slideshow_slide", 5000);
+            slideshow.display();
+            
+            function mkSlideshow(className, transitionTime) {
+                let slides = document.getElementsByClassName(className);
+                let slideIndex = 0;
+                let timer;
+                
+                let ss = {
+                    display: () => {
+                        document.getElementById("slideshow_slides").style.transform = `translateX(${slideIndex*-300}px)`;
+                        timer = setTimeout(ss.next, transitionTime);
+                    },
+                    next: () => {
+                        slideIndex = slideIndex >= slides.length - 1 ? 0 : slideIndex + 1;
+                        clearTimeout(timer);
+                        ss.display();
+                    },
+                    prev: () => {
+                        slideIndex = slideIndex <= 0 ? slides.length - 1 : slideIndex - 1;
+                        clearTimeout(timer);
+                        ss.display();
+                    }
+                };
+                
+                return ss;
+            }
+        </script>
+    </body>
+</html>
